@@ -34,9 +34,9 @@ import { AuthService } from '@core/auth/auth.service';
           <div class="kpi-card primary">
             <div class="kpi-ico"><mat-icon>group</mat-icon></div>
             <div class="kpi-body">
-              <div class="kpi-val">{{ s.users.total }}</div>
+              <div class="kpi-val">{{ s.users?.total ?? 0 }}</div>
               <div class="kpi-lbl">Utilisateurs</div>
-              <div class="kpi-sub">{{ s.users.active }} actifs · {{ s.users.suspended }} suspendus</div>
+              <div class="kpi-sub">{{ s.users?.active ?? 0 }} actifs · {{ s.users?.suspended ?? 0 }} suspendus</div>
             </div>
           </div>
           <div class="kpi-card success">
