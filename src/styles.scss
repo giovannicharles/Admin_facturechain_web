@@ -1,0 +1,132 @@
+@use '@angular/material' as mat;
+
+// === Palette FactureChain (bleu primaire / vert secondaire) ===
+$fc-primary-palette: (
+  50: #E7EFFF, 100: #C2D6FF, 200: #99BBFF, 300: #6F9FFF, 400: #4F8AFF,
+  500: #0B5FFF, 600: #0951E6, 700: #0846C2, 800: #073B9F, 900: #052B7A,
+  contrast: (
+    50: rgba(black, 0.87), 100: rgba(black, 0.87), 200: rgba(black, 0.87),
+    300: white, 400: white, 500: white, 600: white, 700: white, 800: white, 900: white
+  )
+);
+$fc-accent-palette: (
+  50: #E1F8EF, 100: #B3EFD7, 200: #80E5BD, 300: #4DDAA3, 400: #26D391,
+  500: #0FB57A, 600: #0EAA70, 700: #0C9C63, 800: #098E57, 900: #04713F,
+  contrast: (
+    50: rgba(black, 0.87), 100: rgba(black, 0.87), 200: rgba(black, 0.87),
+    300: rgba(black, 0.87), 400: white, 500: white, 600: white, 700: white, 800: white, 900: white
+  )
+);
+
+$fc-primary: mat.m2-define-palette($fc-primary-palette, 500);
+$fc-accent:  mat.m2-define-palette($fc-accent-palette, 500);
+$fc-warn:    mat.m2-define-palette(mat.$m2-red-palette, 600);
+
+$fc-typography: mat.m2-define-typography-config(
+  $font-family: 'Inter, system-ui, -apple-system, sans-serif',
+);
+
+$fc-theme: mat.m2-define-light-theme((
+  color: (primary: $fc-primary, accent: $fc-accent, warn: $fc-warn),
+  typography: $fc-typography,
+  density: 0,
+));
+
+@include mat.core();
+@include mat.all-component-themes($fc-theme);
+
+// === Reset & globals ===
+:root {
+  --fc-primary: #0B5FFF;
+  --fc-primary-dark: #0846C2;
+  --fc-primary-soft: #E7EFFF;
+  --fc-secondary: #0FB57A;
+  --fc-secondary-soft: #E1F8EF;
+  --fc-danger: #E53935;
+  --fc-danger-soft: #FDECEA;
+  --fc-warning: #F59E0B;
+  --fc-warning-soft: #FFF6E6;
+  --fc-success: #10B981;
+  --fc-success-soft: #E1F8EF;
+  --fc-info: #0EA5E9;
+  --fc-info-soft: #E0F2FE;
+  --fc-bg: #F5F7FB;
+  --fc-surface: #FFFFFF;
+  --fc-surface-alt: #F0F3F8;
+  --fc-border: #E2E7EF;
+  --fc-text: #0F172A;
+  --fc-text-secondary: #475569;
+  --fc-text-muted: #94A3B8;
+  --fc-radius-sm: 6px;
+  --fc-radius-md: 10px;
+  --fc-radius-lg: 14px;
+  --fc-radius-xl: 20px;
+  --fc-shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.06);
+  --fc-shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--fc-bg);
+  color: var(--fc-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--fc-primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+// === Helpers ===
+.fc-card {
+  background: var(--fc-surface);
+  border-radius: var(--fc-radius-lg);
+  padding: 24px;
+  box-shadow: var(--fc-shadow-sm);
+}
+.fc-page {
+  padding: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.fc-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 24px 0 12px;
+  color: var(--fc-text);
+}
+.fc-stat-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+// Badge système
+.fc-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px; border-radius: 999px;
+  font-size: 12px; font-weight: 600;
+  background: var(--fc-surface-alt); color: var(--fc-text-secondary);
+
+  &.--primary { background: var(--fc-primary-soft); color: var(--fc-primary-dark); }
+  &.--success { background: var(--fc-success-soft); color: #0E9F6E; }
+  &.--warning { background: var(--fc-warning-soft); color: #B45309; }
+  &.--danger  { background: var(--fc-danger-soft);  color: #B91C1C; }
+  &.--info    { background: var(--fc-info-soft);    color: #0369A1; }
+}
+
+// Material overrides
+.mat-mdc-card {
+  border-radius: var(--fc-radius-lg) !important;
+  box-shadow: var(--fc-shadow-sm) !important;
+}
+.mat-toolbar.mat-primary {
+  background: var(--fc-primary);
+  color: #fff;
+}
+.mat-mdc-snack-bar-container.fc-snack-error {
+  --mdc-snackbar-container-color: var(--fc-danger);
+  --mat-mdc-snack-bar-button-color: #fff;
+  --mdc-snackbar-supporting-text-color: #fff;
+}
+.mat-mdc-snack-bar-container.fc-snack-success {
+  --mdc-snackbar-container-color: var(--fc-secondary);
+  --mat-mdc-snack-bar-button-color: #fff;
+  --mdc-snackbar-supporting-text-color: #fff;
+}
